@@ -108,8 +108,9 @@ body{background:var(--bg);color:var(--tx);font-family:var(--sans);min-height:100
 .ist-cats{display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--tx3);margin-top:3px;}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px;}
-.g13{display:grid;grid-template-columns:1fr 3fr;gap:10px;margin-bottom:12px;}
-@media(max-width:700px){.g2,.g3,.g13{grid-template-columns:1fr;}}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:12px;}
+.g13{display:grid;grid-template-columns:1.2fr 2.8fr;gap:10px;margin-bottom:12px;}
+@media(max-width:700px){.g2,.g3,.g4,.g13{grid-template-columns:1fr;}}
 .kpi{background:var(--bg2);border:1px solid var(--bd);border-radius:6px;padding:12px;position:relative;overflow:hidden;}
 .kpi::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--kc,var(--ac));}
 .kpi-lbl{font-family:var(--mono);font-size:8px;color:var(--tx2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px;}
@@ -157,28 +158,30 @@ body{background:var(--bg);color:var(--tx);font-family:var(--sans);min-height:100
   <div class="hdr-logo">&#9638; Secci&oacute; Censal</div>
   <span style="color:var(--bd)">·</span>
   <div class="hdr-sub">Terrassa &middot; INE/Idescat 2015&#8211;2023</div>
-  <div class="sel-wrap"><label>CUSEC</label><select id="sec-sel"></select></div>
-  <div style="position:relative;margin-left:4px;">
-    <input id="addr-input" type="text" placeholder="&#128269; Carrer, núm... (Terrassa)" autocomplete="off"
-      style="background:var(--bg3);border:1px solid var(--bd);color:var(--tx);padding:5px 28px 5px 9px;border-radius:4px;font-family:var(--sans);font-size:11px;width:240px;outline:none;"
-      onfocus="this.style.borderColor='var(--ac)'" onblur="setTimeout(()=>this.style.borderColor='var(--bd)',200)"/>
-    <div id="addr-status" style="position:absolute;right:8px;top:6px;font-size:9px;color:var(--tx3);pointer-events:none;"></div>
-    <div id="addr-drop" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg2);border:1px solid var(--ac);border-radius:4px;z-index:9999;max-height:200px;overflow-y:auto;margin-top:2px;box-shadow:0 4px 12px rgba(0,0,0,.5);"></div>
-  </div>
 </div>
 <div class="tabs">
   <div class="tab active" data-tab="foto">Foto actual</div>
   <div class="tab" data-tab="evo">Evoluci&oacute; 2015&#8211;2023</div>
-  <div class="tab" data-tab="meta">Qu&egrave; &eacute;s cada cosa?</div>
+  <div class="tab" data-tab="meta">Glossari</div>
 </div>
 <div class="main">
 
 <!-- FOTO -->
 <div class="page active" id="page-foto">
-  <div class="sh">
-    <div class="sh-cusec" id="d-cusec">&#8212;</div>
-    <div class="sh-barri" id="d-barri"></div>
-    <div class="sh-muni">Terrassa &middot; Districte <span id="d-dc">&#8212;</span></div>
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+    <div class="sel-wrap" style="margin-left:0;"><label style="font-size:10px;color:var(--tx2);font-family:var(--mono);">CUSEC</label><select id="sec-sel"></select></div>
+    <div style="position:relative;">
+      <input id="addr-input" type="text" placeholder="&#128269; Carrer, núm..." autocomplete="off"
+        style="background:var(--bg3);border:1px solid var(--bd);color:var(--tx);padding:5px 28px 5px 9px;border-radius:4px;font-family:var(--sans);font-size:11px;width:200px;outline:none;"
+        onfocus="this.style.borderColor='var(--ac)'" onblur="setTimeout(()=>this.style.borderColor='var(--bd)',200)"/>
+      <div id="addr-status" style="position:absolute;right:8px;top:6px;font-size:9px;color:var(--tx3);pointer-events:none;"></div>
+      <div id="addr-drop" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg2);border:1px solid var(--ac);border-radius:4px;z-index:9999;max-height:200px;overflow-y:auto;margin-top:2px;box-shadow:0 4px 12px rgba(0,0,0,.5);"></div>
+    </div>
+    <div style="display:flex;align-items:baseline;gap:8px;margin-left:4px;">
+      <span class="sh-cusec" id="d-cusec" style="font-family:var(--mono);font-size:16px;font-weight:600;">&#8212;</span>
+      <span class="sh-barri" id="d-barri" style="font-size:13px;color:var(--ac);"></span>
+      <span style="font-size:11px;color:var(--tx2);">Terrassa &middot; Districte <span id="d-dc">&#8212;</span></span>
+    </div>
   </div>
   <div class="ist-wrap">
     <div class="ist-lbl">
@@ -194,29 +197,23 @@ body{background:var(--bg);color:var(--tx);font-family:var(--sans);min-height:100
       <div class="ist-cats"><span>46</span><span>Vulnerable &lt;80</span><span>Mitja 98</span><span>&gt;110 Benestant</span><span>124.5</span></div>
     </div>
   </div>
-  <div class="g13">
-    <div class="card" style="padding:0;overflow:hidden;"><div id="mini-map"></div></div>
-    <div style="display:flex;flex-direction:column;gap:10px;">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:0;">
-        <div class="kpi" style="--kc:#f6ad55"><div class="kpi-lbl">Renda neta 2023</div><div class="kpi-val" id="d-renda" style="color:var(--ac2)">&#8212;</div><div class="kpi-sub">&euro;/persona &middot; INE</div></div>
-        <div class="kpi" style="--kc:#fc8181"><div class="kpi-lbl">Gini 2023</div><div class="kpi-val" id="d-gini" style="color:var(--bad)">&#8212;</div><div class="kpi-sub">desigualtat interna</div></div>
-        <div class="kpi" style="--kc:#b794f4"><div class="kpi-lbl">P80/P20 2023</div><div class="kpi-val" id="d-p8020" style="color:#b794f4">&#8212;</div><div class="kpi-sub">ratio rics/pobres</div></div>
-        <div class="kpi" style="--kc:#4fd1c5"><div class="kpi-lbl">Poblaci&oacute; 2023</div><div class="kpi-val" id="d-pob" style="color:var(--ac)">&#8212;</div><div class="kpi-sub">habitants &middot; INE Padr&oacute;</div></div>
-      </div>
-      <div class="g3" style="margin-bottom:0;">
-        <div class="kpi" style="--kc:#4fd1c5"><div class="kpi-lbl">Edat mitjana 2023</div><div class="kpi-val" id="d-edat" style="color:var(--ac)">&#8212;</div><div class="kpi-sub">anys &middot; INE Padr&oacute;</div></div>
-        <div class="kpi" style="--kc:#68d391"><div class="kpi-lbl">FCP ar. (&Delta;IST&gt;20)</div><div class="kpi-val" id="d-fcp20" style="color:var(--good)">&#8212;</div><div class="kpi-sub">% ve&iuml;nes diverses &middot; <span id="d-fcpn">&#8212;</span> ar.</div></div>
-        <div class="card" style="padding:10px;">
-          <div class="card-t" style="margin-bottom:6px;">Context IST</div>
-          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;margin-bottom:3px;"><span style="color:var(--tx2)">Percentil</span><span id="d-pct">&#8212;</span></div>
-          <div class="pct-track"><div class="pct-fill" id="pct-f" style="width:0%"></div></div>
-          <div style="display:flex;justify-content:space-between;font-size:8px;color:var(--tx3);font-family:var(--mono);"><span>&#8592; Vuln.</span><span>Benest. &#8594;</span></div>
-          <canvas id="ctx-hist" height="44" style="margin-top:5px;"></canvas>
-        </div>
-      </div>
+  <!-- layout: 2 columnes 50/50, mapa rowspan files 1-2 -->
+  <div style="display:grid;grid-template-columns:1fr 2fr;grid-template-rows:auto auto auto;gap:10px;margin-bottom:12px;">
+    <!-- Mapa: rowspan 2 -->
+    <div class="card" style="padding:0;overflow:hidden;grid-row:1/3;min-height:260px;"><div id="mini-map" style="height:100%;min-height:260px;"></div></div>
+    <!-- Fila 1: Renda · Gini · Població -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+      <div class="kpi" style="--kc:#f6ad55"><div class="kpi-lbl">Renda neta 2023</div><div class="kpi-val" id="d-renda" style="color:var(--ac2)">&#8212;</div><div class="kpi-sub">&euro;/persona &middot; INE</div></div>
+      <div class="kpi" style="--kc:#fc8181"><div class="kpi-lbl">Gini 2023</div><div class="kpi-val" id="d-gini" style="color:var(--bad)">&#8212;</div><div class="kpi-sub">desigualtat interna</div></div>
+      <div class="kpi" style="--kc:#4fd1c5"><div class="kpi-lbl">Poblaci&oacute; 2023</div><div class="kpi-val" id="d-pob" style="color:var(--ac)">&#8212;</div><div class="kpi-sub">habitants &middot; INE Padr&oacute;</div></div>
     </div>
-  </div>
-  <div class="g2">
+    <!-- Fila 2: Edat · FCP · P80/P20 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+      <div class="kpi" style="--kc:#4fd1c5"><div class="kpi-lbl">Edat mitjana 2023</div><div class="kpi-val" id="d-edat" style="color:var(--ac)">&#8212;</div><div class="kpi-sub">anys &middot; INE Padr&oacute;</div></div>
+      <div class="kpi" style="--kc:#68d391"><div class="kpi-lbl">FCP ar. (&Delta;IST&gt;20)</div><div class="kpi-val" id="d-fcp20" style="color:var(--good)">&#8212;</div><div class="kpi-sub">% ve&iuml;nes diverses &middot; <span id="d-fcpn">&#8212;</span> ar.</div></div>
+      <div class="kpi" style="--kc:#b794f4"><div class="kpi-lbl">P80/P20 2023</div><div class="kpi-val" id="d-p8020" style="color:#b794f4">&#8212;</div><div class="kpi-sub">ratio rics/pobres</div></div>
+    </div>
+    <!-- Fila 3: Zona educativa + Eleccions + Participació -->
     <div class="card">
       <div class="card-t">Zona educativa</div>
       <div class="zbadge"><div class="zdot" id="d-zdot"></div><span id="d-znom">&#8212;</span></div>
@@ -226,36 +223,23 @@ body{background:var(--bg);color:var(--tx);font-family:var(--sans);min-height:100
       <div class="cr"><span class="cr-l">Dist. euclidiana</span><span class="cr-v" id="d-eucl">&#8212;</span></div>
       <div class="cr"><span class="cr-l">FCP (&Delta;IST&gt;30)</span><span class="cr-v" id="d-fcp30">&#8212;</span></div>
     </div>
-    <div class="card">
-      <div class="card-t">Tend&egrave;ncia IST 2021&#8594;2023</div>
-      <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:8px;">
-        <span id="d-tv" style="font-family:var(--mono);font-size:18px;font-weight:600;">&#8212;</span>
-        <span id="d-tl" style="font-size:10px;color:var(--tx2);"></span>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="card">
+        <div class="card-t">Eleccions Municipals 2023 &middot; % vots</div>
+        <div class="vot-grid" id="d-vot-bars"></div>
+        <p class="nota">Valents: local 2023. VOX: des de 2019.</p>
       </div>
-      <div style="display:flex;gap:12px;font-size:10px;">
-        <span style="font-family:var(--mono);">2021 <span id="d-i21" style="color:var(--tx);">&#8212;</span></span>
-        <span style="font-family:var(--mono);">2022 <span id="d-i22" style="color:var(--tx);">&#8212;</span></span>
-        <span style="color:var(--ac);font-family:var(--mono);">2023 <span id="d-i23">&#8212;</span></span>
+      <div class="card">
+        <div class="card-t">Participaci&oacute; Municipals</div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:10px;">
+          <span id="d-part23" style="font-family:var(--mono);font-size:28px;font-weight:600;color:var(--ac)">&#8212;</span>
+          <span style="font-size:11px;color:var(--tx2);">% &middot; 2023</span>
+        </div>
+        <div class="cr"><span class="cr-l">2019</span><span class="cr-v" id="d-part19">&#8212;</span></div>
+        <div class="cr"><span class="cr-l">2015</span><span class="cr-v" id="d-part15">&#8212;</span></div>
+        <div class="cr"><span class="cr-l">2011</span><span class="cr-v" id="d-part11">&#8212;</span></div>
+        <div class="cr"><span class="cr-l">2007</span><span class="cr-v" id="d-part07">&#8212;</span></div>
       </div>
-      <p class="nota">IST homogeni des de 2021. &gt;3 pts = canvi significatiu.</p>
-    </div>
-  </div>
-  <div class="g2">
-    <div class="card">
-      <div class="card-t">Eleccions Municipals 2023 &middot; % vots</div>
-      <div class="vot-grid" id="d-vot-bars"></div>
-      <p class="nota">Valents: local 2023. VOX: des de 2019.</p>
-    </div>
-    <div class="card">
-      <div class="card-t">Participaci&oacute; Municipals</div>
-      <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:10px;">
-        <span id="d-part23" style="font-family:var(--mono);font-size:28px;font-weight:600;color:var(--ac)">&#8212;</span>
-        <span style="font-size:11px;color:var(--tx2);">% &middot; 2023</span>
-      </div>
-      <div class="cr"><span class="cr-l">2019</span><span class="cr-v" id="d-part19">&#8212;</span></div>
-      <div class="cr"><span class="cr-l">2015</span><span class="cr-v" id="d-part15">&#8212;</span></div>
-      <div class="cr"><span class="cr-l">2011</span><span class="cr-v" id="d-part11">&#8212;</span></div>
-      <div class="cr"><span class="cr-l">2007</span><span class="cr-v" id="d-part07">&#8212;</span></div>
     </div>
   </div>
 </div>
@@ -273,8 +257,8 @@ body{background:var(--bg);color:var(--tx);font-family:var(--sans);min-height:100
       <svg id="sv-renda" class="evo-svg" viewBox="0 0 600 100" style="height:100px;"></svg>
     </div>
     <div class="evo-wrap" style="margin-bottom:0;">
-      <div class="evo-t"><span>Participaci&oacute; Municipals 2007&#8211;2023</span></div>
-      <svg id="sv-part" class="evo-svg" viewBox="0 0 600 100" style="height:100px;"></svg>
+      <div class="evo-t"><span>IST (Idescat)</span><span id="ev-ist-d2" style="font-size:10px;"></span></div>
+      <svg id="sv-ist2" class="evo-svg" viewBox="0 0 600 100" style="height:100px;"></svg>
     </div>
   </div>
   <div style="margin-top:10px;"></div>
@@ -636,8 +620,9 @@ function zonaSVG(d){
 function drawEvo(d){
   const r=d.renda_series||{},g=d.gini_series||{},p=d.p8020_series||{},e=d.edat_series||{},ps=d.part_series||{};
   lineSVG("sv-renda",r,"#f6ad55");istSVG(d);
+  const istS={};if(d.IST_2021&&d.IST_2021!=".."){istS["2021"]=parseFloat(d.IST_2021);}if(d.IST_2022&&d.IST_2022!=".."){istS["2022"]=parseFloat(d.IST_2022);}if(d.IST_2023){istS["2023"]=parseFloat(d.IST_2023);}lineSVG("sv-ist2",istS,"#4fd1c5");
   lineSVG("sv-edat",e,"#b794f4");lineSVG("sv-gini",g,"#fc8181");
-  lineSVG("sv-p8020",p,"#4fd1c5");lineSVG("sv-part",ps,"#4fd1c5",ANYSMU);
+  lineSVG("sv-p8020",p,"#4fd1c5");lineSVG("sv-part2",ps,"#4fd1c5",ANYSMU);
   votLiniesSVG(d);
   // Població i % estrangers (2021-2025)
   const ANYS5=["2021","2022","2023","2024","2025"];
@@ -685,6 +670,7 @@ function update(cusec){
   setEl("d-part15",ps["2015"]?ps["2015"].toFixed(1)+" %":"—");
   setEl("d-part11",ps["2011"]?ps["2011"].toFixed(1)+" %":"—");
   setEl("d-part07",ps["2007"]?ps["2007"].toFixed(1)+" %":"—");
+
   const dr=delta(r),dg=delta(g),dp2=delta(p),de=delta(e);
   const el1=document.getElementById("ev-renda-d");if(el1){el1.textContent=fmtD(dr," €");el1.style.color=dr>0?"var(--good)":"var(--bad)";}
   const el2=document.getElementById("ev-gini-d");if(el2){el2.textContent=fmtD(dg);el2.style.color=dg<0?"var(--good)":"var(--bad)";}
