@@ -200,31 +200,34 @@ body{background:var(--bg);color:var(--tx);font-family:var(--sans);min-height:100
       <div class="ist-cats"><span>46</span><span>Vulnerable &lt;80</span><span>Mitja 98</span><span>&gt;110 Benestant</span><span>124.5</span></div>
     </div>
   </div>
-  <!-- layout: grid 6 columnes, mapa col 1-2 row 1-2 -->
+  <!-- layout: grid 6 columnes, mapa col 1-3 row 1-2 (1/2 ample) -->
   <div style="display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:auto auto;gap:10px;margin-bottom:12px;">
-    <!-- Mapa: 2 cols × 2 files -->
-    <div class="card" style="padding:0;overflow:hidden;grid-column:1/3;grid-row:1/3;min-height:260px;"><div id="mini-map" style="height:100%;min-height:260px;"></div></div>
-    <!-- Fila 1: Renda · Gini · Dones · Espanyola -->
+    <!-- Mapa: 3 cols × 2 files = 1/2 -->
+    <div class="card" style="padding:0;overflow:hidden;grid-column:1/4;grid-row:1/3;min-height:260px;"><div id="mini-map" style="height:100%;min-height:260px;"></div></div>
+    <!-- Fila 1: Renda · Gini · Edat mitjana -->
     <div class="kpi" style="--kc:#f6ad55"><div class="kpi-lbl">Renda neta 2023</div><div class="kpi-val" id="d-renda" style="color:var(--ac2)">&#8212;</div><div class="kpi-sub">&euro;/persona &middot; INE</div></div>
     <div class="kpi" style="--kc:#fc8181"><div class="kpi-lbl">Gini 2023</div><div class="kpi-val" id="d-gini" style="color:var(--bad)">&#8212;</div><div class="kpi-sub">desigualtat interna</div></div>
+    <div class="kpi" style="--kc:#4fd1c5"><div class="kpi-lbl">Edat mitjana 2023</div><div class="kpi-val" id="d-edat" style="color:var(--ac)">&#8212;</div><div class="kpi-sub">anys &middot; INE Padr&oacute;</div></div>
+    <!-- Fila 2: Població · Dones · Espanyola -->
+    <div class="kpi" style="--kc:#4fd1c5"><div class="kpi-lbl">Poblaci&oacute; 2023</div><div class="kpi-val" id="d-pob" style="color:var(--ac)">&#8212;</div><div class="kpi-sub">INE Padr&oacute;</div></div>
     <div class="kpi" style="--kc:#f687b3"><div class="kpi-lbl">Dones 2023</div><div class="kpi-val" id="d-dones" style="color:#f687b3">&#8212;</div><div class="kpi-sub">% poblaci&oacute; &middot; INE Padr&oacute;</div></div>
     <div class="kpi" style="--kc:#fbd38d"><div class="kpi-lbl">Espanyola 2023</div><div class="kpi-val" id="d-esp" style="color:#fbd38d">&#8212;</div><div class="kpi-sub">% pob. nacional &middot; INE</div></div>
-    <!-- Fila 2: Població · Menors 18 · Majors 65 · Edat mitjana -->
-    <div class="kpi" style="--kc:#4fd1c5"><div class="kpi-lbl">Poblaci&oacute; 2023</div><div class="kpi-val" id="d-pob" style="color:var(--ac)">&#8212;</div><div class="kpi-sub">INE Padr&oacute;</div></div>
-    <div class="kpi" style="--kc:#68d391"><div class="kpi-lbl">Menors 18 2023</div><div class="kpi-val" id="d-men18" style="color:var(--good)">&#8212;</div><div class="kpi-sub">% poblaci&oacute; &middot; INE</div></div>
-    <div class="kpi" style="--kc:#76e4f7"><div class="kpi-lbl">Majors 65 2023</div><div class="kpi-val" id="d-maj65" style="color:#76e4f7">&#8212;</div><div class="kpi-sub">% poblaci&oacute; &middot; INE</div></div>
-    <div class="kpi" style="--kc:#4fd1c5"><div class="kpi-lbl">Edat mitjana 2023</div><div class="kpi-val" id="d-edat" style="color:var(--ac)">&#8212;</div><div class="kpi-sub">anys &middot; INE Padr&oacute;</div></div>
   </div>
-  <!-- Fila 3: Eleccions 1/2 + Piràmide 1/2 -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+  <!-- Fila 3: Eleccions 1/3 + Àrees edat 1/3 + Piràmide 1/3 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px;">
       <div class="card">
         <div class="card-t">Eleccions Municipals 2023 &middot; % vots</div>
         <div class="vot-grid" id="d-vot-bars"></div>
         <p class="nota">Valents: local 2023. VOX: des de 2019.</p>
       </div>
       <div class="card" style="padding:8px;">
+        <div class="card-t" style="margin-bottom:4px;">Estructura d&apos;edat &lt;18 · 18&#8211;65 · &gt;65</div>
+        <svg id="sv-edat-areas-foto" class="evo-svg" viewBox="0 0 600 140" style="width:100%;height:140px;"></svg>
+        <p class="nota" style="margin-top:2px;">&#9646; &lt;18a &nbsp;&#9646; 18&#8211;65a &nbsp;&#9646; &gt;65a</p>
+      </div>
+      <div class="card" style="padding:8px;">
         <div class="card-t" style="margin-bottom:4px;">Pir&agrave;mide de poblaci&oacute; 2023</div>
-        <canvas id="cv-piramide" style="width:100%;height:180px;display:block;"></canvas>
+        <canvas id="cv-piramide" style="width:100%;height:160px;display:block;"></canvas>
         <div style="display:flex;justify-content:space-between;margin-top:3px;">
           <span style="font-size:9px;color:#4fd1c5;">&#9664; H</span>
           <span style="font-size:9px;color:#f687b3;">D &#9654;</span>
@@ -648,6 +651,42 @@ function drawPiramide(d){
   ctx.fillStyle="#f687b3";ctx.textAlign="left";ctx.fillText("D",cx+2,9);
 }
 
+function edatAreasFoto(d){
+  const svg=document.getElementById("sv-edat-areas-foto");if(!svg)return;
+  const men=d.men18_series||{},maj=d.maj65_series||{};
+  const W=600,H=140,pad={l:40,r:20,t:16,b:18};
+  const anys=["2015","2016","2017","2018","2019","2020","2021","2022","2023"];
+  const pts=anys.map(yr=>{
+    const m=men[yr],g=maj[yr];
+    if(m==null||g==null)return null;
+    return{yr:parseInt(yr),men:m,maj:g,mid:Math.max(0,100-m-g)};
+  }).filter(Boolean);
+  if(pts.length<2){svg.innerHTML=`<text x="300" y="70" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="rgba(255,255,255,.2)">No disponible</text>`;return;}
+  const minYr=Math.min(...pts.map(p=>p.yr)),maxYr=Math.max(...pts.map(p=>p.yr));
+  const xs=yr=>pad.l+(yr-minYr)/(maxYr-minYr)*(W-pad.l-pad.r);
+  const ys=pct=>pad.t+(1-pct/100)*(H-pad.t-pad.b);
+  const mkPath=(topVals,botVals)=>{
+    const fwd=pts.map((p,i)=>`${i===0?"M":"L"}${xs(p.yr)},${ys(topVals[i])}`).join(" ");
+    const bck=[...pts].reverse().map((p,i,arr)=>`L${xs(p.yr)},${ys(botVals[arr.length-1-i])}`).join(" ");
+    return`${fwd} ${bck} Z`;
+  };
+  const menTop=pts.map(p=>p.men);
+  const midTop=pts.map(p=>p.men+p.mid);
+  const base=pts.map(()=>0);
+  const top=pts.map(()=>100);
+  let h="";
+  h+=`<path d="${mkPath(menTop,base)}" fill="#68d391" opacity=".7"/>`;
+  h+=`<path d="${mkPath(midTop,menTop)}" fill="#4299e1" opacity=".5"/>`;
+  h+=`<path d="${mkPath(top,midTop)}" fill="#b794f4" opacity=".7"/>`;
+  pts.forEach(p=>{h+=`<text x="${xs(p.yr)}" y="${H-2}" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="rgba(255,255,255,.3)">${p.yr}</text>`;});
+  const last=pts[pts.length-1];
+  const lx=xs(last.yr)+6;
+  h+=`<text x="${lx}" y="${ys(last.men/2)}" font-family="IBM Plex Mono" font-size="9" fill="#68d391">${last.men.toFixed(0)}%</text>`;
+  h+=`<text x="${lx}" y="${ys(last.men+last.mid/2)}" font-family="IBM Plex Mono" font-size="9" fill="#93c5fd">${last.mid.toFixed(0)}%</text>`;
+  h+=`<text x="${lx}" y="${ys(100-last.maj/2)}" font-family="IBM Plex Mono" font-size="9" fill="#b794f4">${last.maj.toFixed(0)}%</text>`;
+  svg.innerHTML=h;
+}
+
 function edatAreasSVG(d){
   const svg=document.getElementById("sv-edat-areas");if(!svg)return;
   const W=600,H=100,pad={l:40,r:20,t:16,b:18};
@@ -756,7 +795,7 @@ function update(cusec){
   const el5=document.getElementById("ev-ist-d");if(el5){el5.textContent=di!=null?(di>0?"+":"")+di.toFixed(1)+" pts":"";el5.style.color=di!=null?(di<0?"var(--good)":"var(--bad)"):"var(--tx2)";}
   votBarsSVG(d);
   if(document.getElementById("page-foto").classList.contains("active"))
-    requestAnimationFrame(()=>{initMap(d);drawHist(d.IST_2023);drawPiramide(d);});
+    requestAnimationFrame(()=>{initMap(d);drawHist(d.IST_2023);drawPiramide(d);edatAreasFoto(d);});
   if(document.getElementById("page-evo").classList.contains("active"))
     requestAnimationFrame(()=>drawEvo(d));
 }
@@ -786,14 +825,14 @@ document.querySelectorAll(".tab").forEach(t=>{
     t.classList.add("active");
     document.getElementById("page-"+t.dataset.tab).classList.add("active");
     const d=DATA.find(x=>x.cusec===sel.value);if(!d)return;
-    if(t.dataset.tab==="foto")requestAnimationFrame(()=>{initMap(d);drawHist(d.IST_2023);drawPiramide(d);});
+    if(t.dataset.tab==="foto")requestAnimationFrame(()=>{initMap(d);drawHist(d.IST_2023);drawPiramide(d);edatAreasFoto(d);});
     if(t.dataset.tab==="evo")requestAnimationFrame(()=>drawEvo(d));
   });
 });
 
 document.addEventListener("DOMContentLoaded",()=>{
   update("0827902003");
-  requestAnimationFrame(()=>{const d=DATA.find(x=>x.cusec==="0827902003");if(d){initMap(d);drawHist(d.IST_2023);drawPiramide(d);}});
+  requestAnimationFrame(()=>{const d=DATA.find(x=>x.cusec==="0827902003");if(d){initMap(d);drawHist(d.IST_2023);drawPiramide(d);edatAreasFoto(d);}});
 });
 
 // ===== BUSCADOR PER CARRER =====
